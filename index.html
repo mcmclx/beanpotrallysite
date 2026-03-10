@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bean Pot Rally 2026 — A New England Land Rover Off-Road Weekend</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1a2e1a;
+  --deep-green: #2d4a2d;
+  --pine: #3d6b3d;
+  --moss: #5a7c4f;
+  --rust: #8b4513;
+  --warm-brown: #6b3a1f;
+  --bean: #a0522d;
+  --cream: #f5f0e8;
+  --parchment: #ebe3d5;
+  --gold: #c8a84e;
+  --dark-gold: #a68b3c;
+  --charcoal: #2a2a2a;
+  --off-white: #faf8f4;
+  --red-snapper: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* ===== PASSWORD GATE ===== */
+body.locked { overflow: hidden; }
+body.locked .site-content { display: none; }
+
+.pw-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(165deg, var(--forest) 0%, #0d1f0d 40%, #1a1a0d 70%, var(--warm-brown) 100%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+}
+
+.pw-gate.hidden { display: none; }
+
+.pw-box {
+  max-width: 380px; width: 100%; padding: 0 24px;
+}
+
+.pw-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 900;
+  color: var(--cream); line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.pw-box h2 em { font-style: italic; color: var(--gold); }
+
+.pw-box .pw-year {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem; font-weight: 400;
+  color: var(--gold); letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.pw-box p {
+  font-size: 0.9rem; color: rgba(245, 240, 232, 0.5);
+  margin-bottom: 20px; line-height: 1.6;
+}
+
+.pw-input-row {
+  display: flex; gap: 0;
+}
+
+.pw-input-row input {
+  flex: 1;
+  padding: 14px 16px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  background: rgba(245, 240, 232, 0.08);
+  border: 1px solid rgba(245, 240, 232, 0.15);
+  border-right: none;
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.pw-input-row input::placeholder { color: rgba(245, 240, 232, 0.3); }
+.pw-input-row input:focus { border-color: var(--gold); }
+
+.pw-input-row button {
+  padding: 14px 24px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  background: var(--gold); color: var(--forest);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pw-input-row button:hover { background: var(--cream); }
+
+.pw-error {
+  color: var(--red-snapper);
+  font-size: 0.8rem;
+  margin-top: 12px;
+  min-height: 1.2em;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(26, 46, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--gold);
+  transition: all 0.3s ease;
+}
+
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px;
+}
+
+.nav-brand {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700; font-size: 1.1rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+}
+
+.nav-brand span { color: var(--cream); font-weight: 400; }
+
+.nav-logo {
+  height: 32px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 8px;
+  <!-- filter: brightness(0) invert(1); -->
+}
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+
+.nav-links a {
+  color: var(--cream); text-decoration: none;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  transition: color 0.2s;
+  opacity: 0.85;
+}
+
+.nav-links a:hover { color: var(--gold); opacity: 1; }
+
+.nav-cta {
+  background: var(--gold) !important; color: var(--forest) !important;
+  padding: 8px 20px !important; border-radius: 2px;
+  font-weight: 700 !important; opacity: 1 !important;
+  transition: background 0.2s, transform 0.1s !important;
+}
+
+.nav-cta:hover { background: var(--dark-gold) !important; transform: translateY(-1px); }
+
+.nav-mobile-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 4px;
+}
+.nav-mobile-toggle span {
+  display: block; width: 24px; height: 2px; background: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(165deg, var(--forest) 0%, #0d1f0d 40%, #1a1a0d 70%, var(--warm-brown) 100%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(61, 107, 61, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(139, 69, 19, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Decorative pine tree silhouettes */
+.hero-trees {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  opacity: 0.08;
+  background: repeat-x bottom center;
+  background-size: 400px 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cpath d='M40 200 L50 120 L30 130 L50 80 L35 88 L50 40 L65 88 L50 80 L70 130 L50 120 Z' fill='%23fff'/%3E%3Cpath d='M120 200 L130 140 L115 148 L132 100 L118 108 L135 55 L152 108 L138 100 L155 148 L140 140 Z' fill='%23fff'/%3E%3Cpath d='M200 200 L208 160 L196 166 L210 125 L198 132 L212 85 L226 132 L214 125 L228 166 L216 160 Z' fill='%23fff'/%3E%3Cpath d='M290 200 L298 150 L284 157 L300 110 L287 117 L303 65 L319 117 L306 110 L322 157 L308 150 Z' fill='%23fff'/%3E%3Cpath d='M360 200 L367 165 L357 170 L369 135 L359 140 L371 100 L383 140 L373 135 L385 170 L375 165 Z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 24px;
+  animation: fadeUp 1.2s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(70vw, 500px);
+  height: auto;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 4px;
+  color: var(--gold);
+  border: 1px solid rgba(200, 168, 78, 0.4);
+  padding: 8px 24px;
+  margin-bottom: 32px;
+  animation: fadeUp 1.2s ease-out 0.2s both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+  animation: fadeUp 1.2s ease-out 0.3s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-year {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp 1.2s ease-out 0.4s both;
+}
+
+.hero-sub {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(245, 240, 232, 0.8);
+  max-width: 580px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+  animation: fadeUp 1.2s ease-out 0.5s both;
+}
+
+.hero-details {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(245, 240, 232, 0.6);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  animation: fadeUp 1.2s ease-out 0.55s both;
+}
+
+.hero-details span { color: var(--gold); margin: 0 8px; }
+
+.hero-buttons {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 1.2s ease-out 0.6s both;
+}
+
+.btn {
+  display: inline-block; text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  padding: 16px 40px;
+  transition: all 0.25s ease;
+  cursor: pointer; border: none;
+}
+
+.btn-primary {
+  background: var(--gold); color: var(--forest);
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+}
+.btn-primary:hover {
+  background: var(--cream); transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 168, 78, 0.3);
+}
+
+.btn-secondary {
+  background: transparent; color: var(--cream);
+  border: 1px solid rgba(245, 240, 232, 0.3);
+}
+.btn-secondary:hover {
+  border-color: var(--gold); color: var(--gold);
+}
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 240, 232, 0.4);
+  font-size: 0.7rem; letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'Source Sans 3', sans-serif;
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== SECTION UTILITY ===== */
+section { padding: 100px 24px; }
+
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 4px;
+  color: var(--pine);
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; color: var(--forest);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.section-body {
+  font-size: 1.05rem; line-height: 1.8;
+  color: #4a4a4a; max-width: 720px;
+}
+
+.section-body p + p { margin-top: 16px; }
+
+/* ===== ABOUT ===== */
+.about { background: var(--cream); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 48px;
+}
+
+.about-text .section-body { max-width: none; }
+
+.about-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+
+.highlight-card {
+  background: var(--off-white);
+  border: 1px solid rgba(45, 74, 45, 0.1);
+  padding: 28px 24px;
+  border-left: 3px solid var(--pine);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.highlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(26, 46, 26, 0.08);
+}
+
+.highlight-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--forest);
+  margin-bottom: 8px;
+}
+
+.highlight-card p {
+  font-size: 0.9rem; line-height: 1.6;
+  color: #5a5a5a;
+}
+
+/* ===== WHAT TO EXPECT (features) ===== */
+.expect {
+  background: var(--forest);
+  position: relative;
+}
+
+.expect::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.expect .section-label { color: var(--gold); }
+.expect .section-heading { color: var(--cream); }
+
+.expect-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.expect-card {
+  background: rgba(245, 240, 232, 0.05);
+  border: 1px solid rgba(245, 240, 232, 0.08);
+  padding: 36px 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.expect-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--bean));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.expect-card:hover { background: rgba(245, 240, 232, 0.08); }
+.expect-card:hover::before { transform: scaleX(1); }
+
+.expect-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.expect-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.expect-card p {
+  font-size: 0.92rem; line-height: 1.7;
+  color: rgba(245, 240, 232, 0.65);
+}
+
+/* ===== SCHEDULE ===== */
+.schedule { background: var(--parchment); }
+
+.schedule-days {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.day-card {
+  background: var(--off-white);
+  border: 1px solid rgba(45, 74, 45, 0.08);
+  overflow: hidden;
+}
+
+.day-header {
+  background: var(--forest);
+  padding: 20px 24px;
+  position: relative;
+}
+
+.day-header h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--cream);
+}
+
+.day-header .day-date {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem; color: var(--gold);
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.day-events { padding: 24px; }
+
+.day-event {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(45, 74, 45, 0.06);
+}
+
+.day-event:last-child { border-bottom: none; }
+
+.event-time {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--pine);
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.event-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.event-desc strong { color: var(--forest); }
+
+/* ===== REGISTRATION / PRODUCTS ===== */
+.register {
+  background: var(--cream);
+  text-align: center;
+}
+
+.register .section-body { margin: 0 auto 48px; }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: var(--off-white);
+  border: 1px solid rgba(45, 74, 45, 0.1);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(26, 46, 26, 0.1);
+}
+
+.product-badge {
+  background: var(--forest);
+  padding: 40px 24px;
+  position: relative;
+}
+
+.product-badge .product-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+
+.product-badge h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.15rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--cream);
+}
+
+.product-details { padding: 28px 24px; }
+
+.product-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 8px;
+}
+
+.product-includes {
+  font-size: 0.85rem; line-height: 1.7;
+  color: #6a6a6a;
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 0 8px;
+}
+
+.product-includes li {
+  list-style: none;
+  padding-left: 18px;
+  position: relative;
+}
+
+.product-includes li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--pine);
+  font-weight: 700;
+}
+
+.btn-add-cart {
+  display: block; width: 100%;
+  background: var(--forest); color: var(--cream);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  padding: 14px;
+  border: none; cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add-cart:hover { background: var(--deep-green); }
+
+/* ===== VENUE ===== */
+.venue { background: var(--off-white); }
+
+.venue-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 40px;
+  align-items: start;
+}
+
+.venue-map-placeholder {
+  background: var(--forest);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  color: rgba(245, 240, 232, 0.4);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.venue-map-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(45deg, rgba(90, 124, 79, 0.2) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(90, 124, 79, 0.2) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(90, 124, 79, 0.2) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(90, 124, 79, 0.2) 75%);
+  background-size: 30px 30px;
+  opacity: 0.3;
+}
+
+.venue-map-placeholder span {
+  position: relative; z-index: 1;
+  font-size: 2.5rem; margin-bottom: 8px;
+}
+
+.venue-info h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--pine);
+  margin-top: 28px; margin-bottom: 8px;
+}
+
+.venue-info h4:first-child { margin-top: 0; }
+
+.venue-info p {
+  font-size: 0.95rem; line-height: 1.7; color: #4a4a4a;
+}
+
+/* ===== WHAT TO BRING ===== */
+.bring {
+  background: var(--deep-green);
+  position: relative;
+}
+
+.bring::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.bring .section-label { color: var(--gold); }
+.bring .section-heading { color: var(--cream); }
+
+.bring-list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 40px;
+  margin-top: 36px;
+  max-width: 800px;
+}
+
+.bring-item {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+}
+
+.bring-item span:first-child {
+  color: var(--gold);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.bring-item span:last-child {
+  color: rgba(245, 240, 232, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.bring-note {
+  position: relative;
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: rgba(200, 168, 78, 0.1);
+  border-left: 3px solid var(--gold);
+  color: rgba(245, 240, 232, 0.7);
+  font-size: 0.9rem; line-height: 1.6;
+}
+
+.bring-note a {
+  color: var(--gold); text-decoration: underline;
+  text-decoration-color: rgba(200, 168, 78, 0.4);
+}
+
+/* ===== SPONSORS ===== */
+.sponsors { background: var(--cream); text-align: center; }
+
+.sponsor-tiers { margin-top: 48px; }
+
+.tier {
+  margin-bottom: 48px;
+}
+
+.tier-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 3px;
+  color: var(--pine);
+  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+
+.tier-label::before, .tier-label::after {
+  content: '';
+  height: 1px; width: 60px;
+  background: rgba(45, 74, 45, 0.2);
+}
+
+.sponsor-grid {
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+}
+
+.sponsor-placeholder {
+  width: 180px; height: 80px;
+  background: var(--off-white);
+  border: 1px dashed rgba(45, 74, 45, 0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.75rem; color: #999;
+  transition: border-color 0.2s;
+}
+
+.sponsor-placeholder:hover { border-color: var(--pine); }
+
+.sponsor-cta {
+  margin-top: 16px;
+  font-size: 0.9rem; color: #6a6a6a;
+}
+
+.sponsor-cta a {
+  color: var(--pine); font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 74, 45, 0.3);
+}
+
+/* ===== CHARITY ===== */
+.charity {
+  background: var(--parchment);
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.charity .section-inner { max-width: 700px; }
+
+.charity-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+.charity .section-body {
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* ===== CONTACT / FOOTER ===== */
+.footer {
+  background: var(--forest);
+  padding: 60px 24px 40px;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--bean), var(--gold));
+}
+
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+.footer h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.footer p, .footer a {
+  font-size: 0.9rem; line-height: 1.8;
+  color: rgba(245, 240, 232, 0.6);
+}
+
+.footer a {
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+}
+
+.footer a:hover { color: var(--gold); }
+
+.footer-bottom {
+  max-width: 1100px; margin: 48px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(245, 240, 232, 0.08);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+  color: rgba(245, 240, 232, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.footer-clubs {
+  display: flex; gap: 24px;
+}
+
+.footer-clubs span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: rgba(245, 240, 232, 0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-grid,
+  .venue-layout { grid-template-columns: 1fr; }
+
+  .expect-grid,
+  .schedule-days { grid-template-columns: 1fr; }
+
+  .about-highlights { grid-template-columns: 1fr 1fr; }
+
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 650px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: flex; }
+
+  .about-highlights { grid-template-columns: 1fr; }
+
+  .bring-list { grid-template-columns: 1fr; }
+
+  .hero h1 { font-size: 2.8rem; }
+
+  section { padding: 72px 20px; }
+
+  .products-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- PASSWORD GATE -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-box">
+    <h2>Bean Pot<br><em>Rally</em></h2>
+    <div class="pw-year">2026</div>
+    <p>This site is under development. Enter the password to preview.</p>
+    <div class="pw-input-row">
+      <input type="password" id="pwInput" placeholder="Password" autocomplete="off">
+      <button onclick="checkPw()">Enter</button>
+    </div>
+    <div class="pw-error" id="pwError"></div>
+  </div>
+</div>
+
+<!-- SITE CONTENT -->
+<div class="site-content">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><img src="bean_logo.png" alt="Bean Pot Rally logo" class="nav-logo">Bean Pot <span>Rally</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#expect">Details</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#venue">Venue</a>
+      <a href="#sponsors">Sponsors</a>
+      <a href="#register" class="nav-cta">Register</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="this.nextElementSibling?.classList.toggle('show')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-trees"></div>
+  <img src="bean_logo.png" alt="" class="hero-logo">
+  <div class="hero-content">
+    <div class="hero-badge">Massachusetts Rover Society, Down East Land Rover Club, Connecticut Rovers, &amp; the Northeast Land Rover Club Present</div>
+    <h1>Bean Pot<br><em>Rally</em></h1>
+    <div class="hero-year">2026</div>
+    <p class="hero-sub">
+      A New England Land Rover off-road weekend. Trails for all levels, a proper
+      Maine bean pot supper, and camaraderie in the woods of central Maine.
+    </p>
+    <div class="hero-details">
+      June 12–14 <span>•</span> Sebasticook Millennium Green <span>•</span> Unity, Maine
+    </div>
+    <div class="hero-buttons">
+      <a href="#register" class="btn btn-primary">Register Now</a>
+      <a href="#about" class="btn btn-secondary">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-label">About the Event</div>
+    <div class="section-heading">What Is the Bean Pot Rally?</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-body">
+          <p>The Bean Pot Rally is an informal, community-driven gathering of Land Rover owners and enthusiasts from across New England. Held at the Sebasticook Millennium Green in Unity, Maine — the same stunning property that hosts the annual Winter Romp — the Bean Pot Rally offers a full weekend of guided trail rides, camaraderie, and a proper Maine bean pot supper.</p>
+          <p>Whether you drive a Series I, a classic Range Rover, or a brand-new Defender, you're welcome. Trails are rated Green, Blue, and Black so there's something for every skill level and every truck. Novice? No problem — experienced drivers are happy to help guide you down the trail. The event is non-competitive and generally non-damaging (though off-roading always carries risk — you're responsible for your rig).</p>
+          <p>The Bean Pot Rally is organized by the Massachusetts Rover Society (MARS), the Down East Land Rover Club (DELRC), Connecticut Rovers, and the Northeast Land Rover Club (NELRC), with support from Land Rover clubs and ANARC. A portion of proceeds will be donated to a local charity.</p>
+        </div>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <h4>All Skill Levels</h4>
+          <p>Green, Blue, and Black rated trails with experienced trail leaders.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>All Land Rovers</h4>
+          <p>Series, Defenders, Discos, Range Rovers, Freelanders — if it wears the green oval, it belongs here.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>Camp or Hotel</h4>
+          <p>Primitive and powered camping on-site, or stay at the Waterville Grand Hotel 15 minutes away.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>Give Back</h4>
+          <p>A portion of proceeds goes to a local charity. We believe in giving back to the communities that host us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect" id="expect">
+  <div class="section-inner">
+    <div class="section-label">What to Expect</div>
+    <div class="section-heading" style="color: var(--cream);">A Weekend in the Maine Woods</div>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <h4>Guided Trail Rides</h4>
+        <p>Green, Blue, and Black rated trails through woodland, ridgelines, and water crossings. All pre-run with experienced trail leaders.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Bean Pot Supper</h4>
+        <p>The main event — traditional slow-baked Maine beans, brown bread, and red snapper hot dogs. Saturday evening under the pines.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Camping On-Site</h4>
+        <p>Primitive camping in the powerline corridor and fields. RVs welcome near the barn. Nearby campgrounds and hotels too.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Recovery Demos</h4>
+        <p>Recovery and first-aid demonstrations from ANARC stewards. Learn proper technique from the best.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Movie Night</h4>
+        <p>Friday evening movie streamed on the Green — plus an optional night trail ride for the adventurous.</p>
+      </div>
+      <div class="expect-card">
+        <h4>Vendors &amp; Raffle</h4>
+        <p>Land Rover dealers and aftermarket specialists on display. Raffle prizes, giveaways, and a community bonfire to close the night.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+  <div class="section-inner">
+    <div class="section-label">Schedule</div>
+    <div class="section-heading">Three Days of Land Rover Adventure</div>
+
+    <div class="schedule-days">
+      <!-- FRIDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <h3>Friday</h3>
+          <div class="day-date">June 12, 2026</div>
+        </div>
+        <div class="day-events">
+          <div class="day-event">
+            <span class="event-time">3:00 PM</span>
+            <span class="event-desc"><strong>Arrival &amp; check-in.</strong> Set up camp, meet fellow enthusiasts.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">5:00 PM</span>
+            <span class="event-desc"><strong>Sponsor tent opens.</strong> JLR vehicles on display, coffee.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">7:00 PM</span>
+            <span class="event-desc">Dinner on your own or group outing.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">9:00 PM</span>
+            <span class="event-desc"><strong>Movie night</strong> on the Green / optional night trail ride.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SATURDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <h3>Saturday</h3>
+          <div class="day-date">June 13, 2026</div>
+        </div>
+        <div class="day-events">
+          <div class="day-event">
+            <span class="event-time">7:00 AM</span>
+            <span class="event-desc">Breakfast.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">8:30 AM</span>
+            <span class="event-desc"><strong>Driver's briefing</strong> and trail assignments.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">9:00 AM</span>
+            <span class="event-desc"><strong>Morning trail rides</strong> — Green, Blue, and Black groups.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">12:00 PM</span>
+            <span class="event-desc">Pack lunch at the Ridge.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">1:00 PM</span>
+            <span class="event-desc"><strong>Afternoon trails,</strong> recovery demos, vendor area.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">5:30 PM</span>
+            <span class="event-desc"><strong>The Bean Pot Supper</strong> — beans, brown bread, red snappers.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">7:00 PM</span>
+            <span class="event-desc">Raffle, recognition, prizes.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">8:00 PM</span>
+            <span class="event-desc"><strong>Bonfire</strong> and optional night driving.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUNDAY -->
+      <div class="day-card">
+        <div class="day-header">
+          <h3>Sunday</h3>
+          <div class="day-date">June 14, 2026</div>
+        </div>
+        <div class="day-events">
+          <div class="day-event">
+            <span class="event-time">7:00 AM</span>
+            <span class="event-desc">Breakfast.</span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">9:00 AM</span>
+            <span class="event-desc"><strong>Final trail rides.</strong></span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">12:00 PM</span>
+            <span class="event-desc"><strong>Group photo.</strong></span>
+          </div>
+          <div class="day-event">
+            <span class="event-time">12:30 PM</span>
+            <span class="event-desc">Closing remarks and farewells.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="section-inner">
+    <div class="section-label">Registration</div>
+    <div class="section-heading">Join the Rally</div>
+    <div class="section-body">
+      Registration covers one vehicle and everyone riding with you. You'll get access to all trail rides, the Bean Pot Supper, and camping on-site. Vendor registration includes dedicated display space.
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-badge">
+          <h3>Vehicle Registration</h3>
+        </div>
+        <div class="product-details">
+          <div class="product-price">$75</div>
+          <ul class="product-includes">
+            <li>One vehicle + driver</li>
+            <li>Bean Pot Supper Saturday</li>
+            <li>Camping on-site</li>
+            <li>Event sticker &amp; t-shirt</li>
+          </ul>
+          <button class="btn-add-cart">Register Vehicle</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge">
+          <h3>Attendee Registration</h3>
+        </div>
+        <div class="product-details">
+          <div class="product-price">$20</div>
+          <ul class="product-includes">
+            <li>Bean Pot Supper Saturday</li>
+            <li>Camping on-site</li>
+            <li>Event sticker &amp; t-shirt</li>
+          </ul>
+          <button class="btn-add-cart">Register Attendee</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue" id="venue">
+  <div class="section-inner">
+    <div class="section-label">The Venue</div>
+    <div class="section-heading">Sebasticook Millennium Green</div>
+
+    <div class="venue-layout">
+      <div class="venue-map-placeholder">
+        <iframe
+          width="100%" height="100%" style="border:0; position:absolute; inset:0;"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-69.41%2C44.55%2C-69.35%2C44.59&layer=mapnik&marker=44.57%2C-69.38"
+          loading="lazy"
+          referrerpolicy="no-referrer">
+        </iframe>
+      </div>
+      <div class="venue-info">
+        <div class="section-body" style="max-width: none;">
+          <p>The Sebasticook Millennium Green is a private off-road property in Unity, Maine, featuring miles of woodland trails, open fields, ridgelines, and water crossings. The property has hosted the Winter Romp for years and offers terrain for every skill level — from gently rolling forest roads to rocky, technical climbs.</p>
+          <p>Amenities include a barn with running water, staging areas, and camping in the powerline corridor and surrounding fields. RVs welcome near the barn.</p>
+        </div>
+
+        <h4>Camping</h4>
+        <p>Primitive camping on-site at the powerline and staging area. RVs can park near the barn with running water. Porta-potties will be available. Greenwood Acres, a nearby campground, offers additional tent camping.</p>
+
+        <h4>Hotel</h4>
+        <p>The Waterville Grand Hotel (Best Western Plus) in Waterville is about 15 minutes away and has a block of rooms reserved for the event. Details to follow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO BRING -->
+<section class="bring" id="bring">
+  <div class="section-inner">
+    <div class="section-label">Be Prepared</div>
+    <div class="section-heading" style="color: var(--cream);">What to Bring</div>
+
+    <div class="bring-list">
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Your Land Rover — registered, insured, properly maintained</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>A working CB or GMRS radio</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Front and rear recovery points</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Appropriate tires for the conditions</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Tow strap and shackles</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Food and water for the trail</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>Warm layers and rain gear</span>
+      </div>
+      <div class="bring-item">
+        <span>▸</span>
+        <span>The right attitude</span>
+      </div>
+    </div>
+
+    <div class="bring-note">
+      If your rig isn't properly prepared, you may be asked to ride along with another driver. For a full equipment list, check the Winter Romp's excellent guidance at <a href="https://winterromp.me" target="_blank">winterromp.me</a>.
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="sponsors" id="sponsors">
+  <div class="section-inner">
+    <div class="section-label">Our Sponsors</div>
+    <div class="section-heading">Made Possible By</div>
+
+    <div class="sponsor-tiers">
+      <div class="tier">
+        <div class="tier-label">Summit Sponsors</div>
+        <div class="sponsor-grid">
+          <div class="sponsor-placeholder">Sponsor Logo</div>
+          <div class="sponsor-placeholder">Sponsor Logo</div>
+        </div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Pathfinder Sponsors</div>
+        <div class="sponsor-grid">
+          <div class="sponsor-placeholder">Sponsor Logo</div>
+          <div class="sponsor-placeholder">Sponsor Logo</div>
+          <div class="sponsor-placeholder">Sponsor Logo</div>
+        </div>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Trail Friends</div>
+        <div class="sponsor-grid">
+          <div class="sponsor-placeholder">Logo</div>
+          <div class="sponsor-placeholder">Logo</div>
+          <div class="sponsor-placeholder">Logo</div>
+          <div class="sponsor-placeholder">Logo</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sponsor-cta">Interested in sponsoring? <a href="mailto:mmccall@gmail.com">Get in touch →</a></p>
+  </div>
+</section>
+
+<!-- CHARITY -->
+<section class="charity">
+  <div class="section-inner">
+    <div class="section-label" style="text-align: center;">Giving Back</div>
+    <div class="section-heading" style="text-align: center;">Community First</div>
+    <div class="section-body" style="text-align: center; margin: 0 auto;">
+      <p>A portion of the proceeds from the Bean Pot Rally will be donated to a local charity. We believe in giving back to the communities and land that make events like this possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Contact</h4>
+      <p>Questions? Reach out to the organizing committee.</p>
+      <a href="mailto:mmccall@gmail.com" style="color: var(--gold); margin-top: 8px;">mmccall@gmail.com</a>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#about">About the Event</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#register">Register</a>
+      <a href="#venue">Venue &amp; Lodging</a>
+      <a href="#sponsors">Sponsors</a>
+    </div>
+    <div>
+      <h4>Follow Along</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="https://massroversociety.com" target="_blank">massroversociety.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Bean Pot Rally. All rights reserved.</p>
+    <div class="footer-clubs">
+      <span>MARS</span>
+      <span>DELRC</span>
+      <span>ANARC</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end .site-content -->
+
+<script>
+// ---- PASSWORD CONFIG ----
+// To change the password, run this in any browser console:
+//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOUR_NEW_PASSWORD'))
+//     .then(b => console.log([...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('')))
+// Then paste the resulting hex string below.
+const SITE_PASSWORD_HASH = "5747d8122a4534be13fc02b14c174753abb9b2488548e61eb24e2c6c456f7a27";
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkPw() {
+  const input = document.getElementById('pwInput');
+  const error = document.getElementById('pwError');
+  const hash = await sha256(input.value);
+  if (hash === SITE_PASSWORD_HASH) {
+    document.getElementById('pwGate').classList.add('hidden');
+    document.body.classList.remove('locked');
+    sessionStorage.setItem('bpr_unlocked', '1');
+  } else {
+    error.textContent = 'Incorrect password. Try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+// Allow Enter key to submit
+document.getElementById('pwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPw();
+});
+
+// Remember unlock for the browser session so refreshes don't re-prompt
+if (sessionStorage.getItem('bpr_unlocked') === '1') {
+  document.getElementById('pwGate').classList.add('hidden');
+  document.body.classList.remove('locked');
+}
+
+// Auto-focus the password field
+document.getElementById('pwInput').focus();
+</script>
+
+</body>
+</html>
