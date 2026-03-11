@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shasum:*)",
+      "WebFetch(domain:nominatim.openstreetmap.org)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.google.com)",
+      "Bash(git:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh api:*)"
+    ]
+  }
+}

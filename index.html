@@ -324,28 +324,6 @@ nav {
   box-shadow: 0 8px 30px rgba(200, 168, 78, 0.3);
 }
 
-.btn-secondary {
-  background: transparent; color: var(--cream);
-  border: 1px solid rgba(245, 240, 232, 0.3);
-}
-.btn-secondary:hover {
-  border-color: var(--gold); color: var(--gold);
-}
-
-.hero-scroll {
-  position: absolute; bottom: 40px; left: 50%;
-  transform: translateX(-50%);
-  color: rgba(245, 240, 232, 0.4);
-  font-size: 0.7rem; letter-spacing: 3px;
-  text-transform: uppercase;
-  font-family: 'Source Sans 3', sans-serif;
-  animation: bob 2s ease-in-out infinite;
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
-}
 
 /* ===== SECTION UTILITY ===== */
 section { padding: 100px 24px; }
@@ -392,48 +370,7 @@ section { padding: 100px 24px; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
 }
 
-.highlight-card {
-  background: var(--off-white);
-  border: 1px solid rgba(45, 74, 45, 0.1);
-  padding: 28px 24px;
-  border-left: 3px solid var(--pine);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.highlight-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(26, 46, 26, 0.08);
-}
-
-.highlight-card h4 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 0.85rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1.5px;
-  color: var(--forest);
-  margin-bottom: 8px;
-}
-
-.highlight-card p {
-  font-size: 0.9rem; line-height: 1.6;
-  color: #5a5a5a;
-}
-
-/* ===== WHAT TO EXPECT (features) ===== */
-.expect {
-  background: var(--forest);
-  position: relative;
-}
-
-.expect::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-
-.expect .section-label { color: var(--gold); }
-.expect .section-heading { color: var(--cream); }
-
+/* ===== FEATURE CARDS ===== */
 .expect-grid {
   position: relative;
   display: grid;
@@ -443,12 +380,13 @@ section { padding: 100px 24px; }
 }
 
 .expect-card {
-  background: rgba(245, 240, 232, 0.05);
-  border: 1px solid rgba(245, 240, 232, 0.08);
+  background: var(--off-white);
+  border: 1px solid rgba(45, 74, 45, 0.1);
   padding: 36px 28px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  border-left: 3px solid var(--pine);
 }
 
 .expect-card::before {
@@ -461,26 +399,23 @@ section { padding: 100px 24px; }
   transition: transform 0.4s ease;
 }
 
-.expect-card:hover { background: rgba(245, 240, 232, 0.08); }
-.expect-card:hover::before { transform: scaleX(1); }
-
-.expect-icon {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
-  display: block;
+.expect-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(26, 46, 26, 0.08);
 }
+.expect-card:hover::before { transform: scaleX(1); }
 
 .expect-card h4 {
   font-family: 'Oswald', sans-serif;
-  font-size: 1rem; font-weight: 600;
+  font-size: 0.85rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 1.5px;
-  color: var(--cream);
-  margin-bottom: 10px;
+  color: var(--forest);
+  margin-bottom: 8px;
 }
 
 .expect-card p {
-  font-size: 0.92rem; line-height: 1.7;
-  color: rgba(245, 240, 232, 0.65);
+  font-size: 0.9rem; line-height: 1.6;
+  color: #5a5a5a;
 }
 
 /* ===== SCHEDULE ===== */
@@ -774,6 +709,9 @@ section { padding: 100px 24px; }
   display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
 }
 
+/* Sponsor logos should be delivered at consistent dimensions per tier:
+   Summit: 180x80, Pathfinder: 180x80, Trail Friends: 180x80.
+   Use object-fit: contain on <img> tags when replacing placeholders. */
 .sponsor-placeholder {
   width: 180px; height: 80px;
   background: var(--off-white);
@@ -885,7 +823,6 @@ section { padding: 100px 24px; }
   .about-grid,
   .venue-layout { grid-template-columns: 1fr; }
 
-  .expect-grid,
   .schedule-days { grid-template-columns: 1fr; }
 
   .about-highlights { grid-template-columns: 1fr 1fr; }
@@ -934,8 +871,8 @@ section { padding: 100px 24px; }
     <a href="#" class="nav-brand"><img src="bean_logo.png" alt="Bean Pot Rally logo" class="nav-logo">Bean Pot <span>Rally</span></a>
     <div class="nav-links">
       <a href="#about">About</a>
-      <a href="#expect">Details</a>
       <a href="#schedule">Schedule</a>
+      <a href="#bring">What to Bring</a>
       <a href="#venue">Venue</a>
       <a href="#sponsors">Sponsors</a>
       <a href="#register" class="nav-cta">Register</a>
@@ -963,10 +900,8 @@ section { padding: 100px 24px; }
     </div>
     <div class="hero-buttons">
       <a href="#register" class="btn btn-primary">Register Now</a>
-      <a href="#about" class="btn btn-secondary">Learn More</a>
     </div>
   </div>
-  <div class="hero-scroll">Scroll ↓</div>
 </section>
 
 <!-- ABOUT -->
@@ -983,56 +918,30 @@ section { padding: 100px 24px; }
         </div>
       </div>
       <div class="about-highlights">
-        <div class="highlight-card">
-          <h4>All Skill Levels</h4>
-          <p>Green, Blue, and Black rated trails with experienced trail leaders.</p>
+        <div class="expect-card">
+          <h4>Guided Trail Rides</h4>
+          <p>Green, Blue, and Black rated trails through woodland, ridgelines, and water crossings. All pre-run with experienced trail leaders.</p>
         </div>
-        <div class="highlight-card">
-          <h4>All Land Rovers</h4>
-          <p>Series, Defenders, Discos, Range Rovers, Freelanders — if it wears the green oval, it belongs here.</p>
+        <div class="expect-card">
+          <h4>Bean Pot Supper</h4>
+          <p>The main event — traditional slow-baked Maine beans, brown bread, and red snapper hot dogs. Saturday evening under the pines.</p>
         </div>
-        <div class="highlight-card">
-          <h4>Camp or Hotel</h4>
-          <p>Primitive and powered camping on-site, or stay at the Waterville Grand Hotel 15 minutes away.</p>
+        <div class="expect-card">
+          <h4>Camping On-Site</h4>
+          <p>Primitive camping in the powerline corridor and fields. RVs welcome near the barn. Nearby campgrounds and hotels too.</p>
         </div>
-        <div class="highlight-card">
-          <h4>Give Back</h4>
-          <p>A portion of proceeds goes to a local charity. We believe in giving back to the communities that host us.</p>
+        <div class="expect-card">
+          <h4>Recovery Demos</h4>
+          <p>Recovery and first-aid demonstrations from ANARC stewards. Learn proper technique from the best.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT TO EXPECT -->
-<section class="expect" id="expect">
-  <div class="section-inner">
-    <div class="section-label">What to Expect</div>
-    <div class="section-heading" style="color: var(--cream);">A Weekend in the Maine Woods</div>
-    <div class="expect-grid">
-      <div class="expect-card">
-        <h4>Guided Trail Rides</h4>
-        <p>Green, Blue, and Black rated trails through woodland, ridgelines, and water crossings. All pre-run with experienced trail leaders.</p>
-      </div>
-      <div class="expect-card">
-        <h4>Bean Pot Supper</h4>
-        <p>The main event — traditional slow-baked Maine beans, brown bread, and red snapper hot dogs. Saturday evening under the pines.</p>
-      </div>
-      <div class="expect-card">
-        <h4>Camping On-Site</h4>
-        <p>Primitive camping in the powerline corridor and fields. RVs welcome near the barn. Nearby campgrounds and hotels too.</p>
-      </div>
-      <div class="expect-card">
-        <h4>Recovery Demos</h4>
-        <p>Recovery and first-aid demonstrations from ANARC stewards. Learn proper technique from the best.</p>
-      </div>
-      <div class="expect-card">
-        <h4>Movie Night</h4>
-        <p>Friday evening movie streamed on the Green — plus an optional night trail ride for the adventurous.</p>
-      </div>
-      <div class="expect-card">
-        <h4>Vendors &amp; Raffle</h4>
-        <p>Land Rover dealers and aftermarket specialists on display. Raffle prizes, giveaways, and a community bonfire to close the night.</p>
+        <div class="expect-card">
+          <h4>Movie Night</h4>
+          <p>Friday evening movie streamed on the Green — plus an optional night trail ride for the adventurous.</p>
+        </div>
+        <div class="expect-card">
+          <h4>Vendors &amp; Raffle</h4>
+          <p>Land Rover dealers and aftermarket specialists on display. Raffle prizes, giveaways, and a community bonfire to close the night.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1142,81 +1051,6 @@ section { padding: 100px 24px; }
   </div>
 </section>
 
-<!-- REGISTER -->
-<section class="register" id="register">
-  <div class="section-inner">
-    <div class="section-label">Registration</div>
-    <div class="section-heading">Join the Rally</div>
-    <div class="section-body">
-      Registration covers one vehicle and everyone riding with you. You'll get access to all trail rides, the Bean Pot Supper, and camping on-site. Vendor registration includes dedicated display space.
-    </div>
-
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-badge">
-          <h3>Vehicle Registration</h3>
-        </div>
-        <div class="product-details">
-          <div class="product-price">$75</div>
-          <ul class="product-includes">
-            <li>One vehicle + driver</li>
-            <li>Bean Pot Supper Saturday</li>
-            <li>Camping on-site</li>
-            <li>Event sticker &amp; t-shirt</li>
-          </ul>
-          <button class="btn-add-cart">Register Vehicle</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge">
-          <h3>Attendee Registration</h3>
-        </div>
-        <div class="product-details">
-          <div class="product-price">$20</div>
-          <ul class="product-includes">
-            <li>Bean Pot Supper Saturday</li>
-            <li>Camping on-site</li>
-            <li>Event sticker &amp; t-shirt</li>
-          </ul>
-          <button class="btn-add-cart">Register Attendee</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VENUE -->
-<section class="venue" id="venue">
-  <div class="section-inner">
-    <div class="section-label">The Venue</div>
-    <div class="section-heading">Sebasticook Millennium Green</div>
-
-    <div class="venue-layout">
-      <div class="venue-map-placeholder">
-        <iframe
-          width="100%" height="100%" style="border:0; position:absolute; inset:0;"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-69.41%2C44.55%2C-69.35%2C44.59&layer=mapnik&marker=44.57%2C-69.38"
-          loading="lazy"
-          referrerpolicy="no-referrer">
-        </iframe>
-      </div>
-      <div class="venue-info">
-        <div class="section-body" style="max-width: none;">
-          <p>The Sebasticook Millennium Green is a private off-road property in Unity, Maine, featuring miles of woodland trails, open fields, ridgelines, and water crossings. The property has hosted the Winter Romp for years and offers terrain for every skill level — from gently rolling forest roads to rocky, technical climbs.</p>
-          <p>Amenities include a barn with running water, staging areas, and camping in the powerline corridor and surrounding fields. RVs welcome near the barn.</p>
-        </div>
-
-        <h4>Camping</h4>
-        <p>Primitive camping on-site at the powerline and staging area. RVs can park near the barn with running water. Porta-potties will be available. Greenwood Acres, a nearby campground, offers additional tent camping.</p>
-
-        <h4>Hotel</h4>
-        <p>The Waterville Grand Hotel (Best Western Plus) in Waterville is about 15 minutes away and has a block of rooms reserved for the event. Details to follow.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- WHAT TO BRING -->
 <section class="bring" id="bring">
   <div class="section-inner">
@@ -1260,6 +1094,85 @@ section { padding: 100px 24px; }
 
     <div class="bring-note">
       If your rig isn't properly prepared, you may be asked to ride along with another driver. For a full equipment list, check the Winter Romp's excellent guidance at <a href="https://winterromp.me" target="_blank">winterromp.me</a>.
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="section-inner">
+    <div class="section-label">Registration</div>
+    <div class="section-heading">Join the Rally</div>
+    <div class="section-body">
+      Registration covers one vehicle and everyone riding with you. You'll get access to all trail rides, the Bean Pot Supper, and camping on-site.
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-badge">
+          <h3>Vehicle Registration</h3>
+        </div>
+        <div class="product-details">
+          <div class="product-price">$75</div>
+          <ul class="product-includes">
+            <li>One vehicle + driver</li>
+            <li>Bean Pot Supper Saturday</li>
+            <li>Camping on-site</li>
+            <li>Event sticker &amp; t-shirt</li>
+          </ul>
+          <button class="btn-add-cart">Register Vehicle</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge">
+          <h3>Attendee Registration</h3>
+        </div>
+        <div class="product-details">
+          <div class="product-price">$20</div>
+          <ul class="product-includes">
+            <li>Bean Pot Supper Saturday</li>
+            <li>Camping on-site</li>
+            <li>Event sticker &amp; t-shirt</li>
+          </ul>
+          <button class="btn-add-cart">Register Attendee</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="vendor-cta" style="text-align: center; margin-top: 36px; font-size: 0.95rem; color: #6a6a6a;">
+      Interested in displaying as a vendor? <a href="mailto:mmccall@gmail.com" style="color: var(--pine); font-weight: 600;">Contact us for details →</a>
+    </p>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue" id="venue">
+  <div class="section-inner">
+    <div class="section-label">The Venue</div>
+    <div class="section-heading">Sebasticook Millennium Green</div>
+
+    <div class="venue-layout">
+      <div class="venue-map-placeholder">
+        <iframe
+          width="100%" height="100%" style="border:0; position:absolute; inset:0;"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-69.41%2C44.55%2C-69.35%2C44.59&layer=mapnik&marker=44.57%2C-69.38"
+          loading="lazy"
+          referrerpolicy="no-referrer">
+        </iframe>
+      </div>
+      <div class="venue-info">
+        <div class="section-body" style="max-width: none;">
+          <p>The Sebasticook Millennium Green is a private off-road property in Unity, Maine, featuring miles of woodland trails, open fields, ridgelines, and water crossings. The property has hosted the Winter Romp for years and offers terrain for every skill level — from gently rolling forest roads to rocky, technical climbs.</p>
+          <p>Amenities include a barn with running water, staging areas, and camping in the powerline corridor and surrounding fields. RVs welcome near the barn.</p>
+        </div>
+
+        <h4>Camping</h4>
+        <p>Primitive camping on-site at the powerline and staging area. RVs can park near the barn with running water. Porta-potties will be available. Greenwood Acres, a nearby campground, offers additional tent camping.</p>
+
+        <h4>Hotel</h4>
+        <p>The Waterville Grand Hotel (Best Western Plus) in Waterville is about 15 minutes away and has a block of rooms reserved for the event. Details to follow.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1322,11 +1235,11 @@ section { padding: 100px 24px; }
     </div>
     <div>
       <h4>Quick Links</h4>
-      <a href="#about">About the Event</a>
+      <a href="#about">About</a>
       <a href="#schedule">Schedule</a>
-      <a href="#register">Register</a>
+      <a href="#bring">What to Bring</a>
       <a href="#venue">Venue &amp; Lodging</a>
-      <a href="#sponsors">Sponsors</a>
+      <a href="#register">Register</a>
     </div>
     <div>
       <h4>Follow Along</h4>
